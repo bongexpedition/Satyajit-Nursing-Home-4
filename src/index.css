@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+/* Hide platform attribution badges and popups */
+#arena-badge, 
+.arena-badge,
+[class*="arena-"],
+[id*="arena-"],
+#powered-by,
+.powered-by-badge {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+}
