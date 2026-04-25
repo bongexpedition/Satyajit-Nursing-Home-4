@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Satyajit Nursing Home | Advanced Healthcare Since 1988</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // MutationObserver to remove platform badges dynamically
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+            if (node.nodeType === 1) { // Element node
+              const content = node.textContent || '';
+              const className = node.className || '';
+              const id = node.id || '';
+              
+              if (
+                content.includes('Arena') || 
+                className.includes('arena') || 
+                id.includes('arena')
+              ) {
+                node.style.display = 'none';
+                node.remove();
+              }
+            }
+          });
+        });
+      });
+
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+
+      // Also try immediate removal
+      window.addEventListener('load', () => {
+        const badges = document.querySelectorAll('[class*="arena"], [id*="arena"]');
+        badges.forEach(b => b.remove());
+      });
+    </script>
+  </body>
+</html>
